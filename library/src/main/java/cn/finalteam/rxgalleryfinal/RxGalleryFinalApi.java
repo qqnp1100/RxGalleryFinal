@@ -21,7 +21,6 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
-import cn.finalteam.rxgalleryfinal.imageloader.ImageLoaderType;
 import cn.finalteam.rxgalleryfinal.rxbus.RxBusResultDisposable;
 import cn.finalteam.rxgalleryfinal.rxbus.event.ImageMultipleResultEvent;
 import cn.finalteam.rxgalleryfinal.rxbus.event.ImageRadioResultEvent;
@@ -54,7 +53,6 @@ public class RxGalleryFinalApi {
             throw new NullPointerException("context == null");
         }
         rxGalleryFinal = RxGalleryFinal.with(context)
-                .imageLoader(ImageLoaderType.GLIDE)
                 .subscribe(null);
         Logger.i("==========" + mRxApi + "====" + rxGalleryFinal);
         return mRxApi;
@@ -76,7 +74,6 @@ public class RxGalleryFinalApi {
             rxGalleryFinal
                     .image()
                     .radio()
-                    .imageLoader(ImageLoaderType.GLIDE)
                     .subscribe(rxBusResultDisposable)
                     .openGallery();
         } else {
@@ -84,7 +81,6 @@ public class RxGalleryFinalApi {
                     .image()
                     .radio()
                     .crop()
-                    .imageLoader(ImageLoaderType.GLIDE)
                     .subscribe(rxBusResultDisposable)
                     .openGallery();
         }
@@ -132,7 +128,6 @@ public class RxGalleryFinalApi {
                 .image()
                 .radio()
                 .crop()
-                .imageLoader(ImageLoaderType.GLIDE)
                 .subscribe(rxBusResultDisposable)
                 .openGallery();
         return mRxApi;
@@ -163,7 +158,6 @@ public class RxGalleryFinalApi {
                 .image()
                 .radio()
                 .crop()
-                .imageLoader(ImageLoaderType.GLIDE)
                 .subscribe(rxBusResultDisposable)
                 .openGallery();
     }
@@ -183,7 +177,6 @@ public class RxGalleryFinalApi {
                 .image()
                 .multiple()
                 .crop()
-                .imageLoader(ImageLoaderType.GLIDE)
                 .subscribe(rxBusResultDisposable)
                 .openGallery();
     }
@@ -204,7 +197,6 @@ public class RxGalleryFinalApi {
                 .maxSize(maxSize)
                 .multiple()
                 .crop()
-                .imageLoader(ImageLoaderType.GLIDE)
                 .subscribe(rxBusResultDisposable)
                 .openGallery();
     }
@@ -223,7 +215,6 @@ public class RxGalleryFinalApi {
                 .with(context)
                 .multiple()
                 .video()
-                .imageLoader(ImageLoaderType.GLIDE)
                 .subscribe(rxBusResultDisposable)
                 .openGallery();
     }
@@ -244,7 +235,6 @@ public class RxGalleryFinalApi {
                 .video()
                 .multiple()
                 .maxSize(9)
-                .imageLoader(ImageLoaderType.UNIVERSAL)
                 .subscribe(rxBusResultDisposable)
                 .openGallery();
     }

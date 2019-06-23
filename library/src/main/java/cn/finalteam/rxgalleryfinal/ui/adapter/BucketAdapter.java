@@ -23,6 +23,7 @@ import java.util.List;
 
 import cn.finalteam.rxgalleryfinal.Configuration;
 import cn.finalteam.rxgalleryfinal.R;
+import cn.finalteam.rxgalleryfinal.RxGalleryFinal;
 import cn.finalteam.rxgalleryfinal.bean.BucketBean;
 import cn.finalteam.rxgalleryfinal.ui.widget.SquareImageView;
 import cn.finalteam.rxgalleryfinal.utils.ThemeUtils;
@@ -75,7 +76,7 @@ public class BucketAdapter extends RecyclerView.Adapter<BucketAdapter.BucketView
         }
 
         String path = bucketBean.getCover();
-        mConfiguration.getImageLoader()
+        RxGalleryFinal.getImageLoader()
                 .displayImage(holder.itemView.getContext(), path, holder.mIvBucketCover, mDefaultImage, mConfiguration.getImageConfig(),
                         true, mConfiguration.isPlayGif(), 100, 100, bucketBean.getOrientation());
     }

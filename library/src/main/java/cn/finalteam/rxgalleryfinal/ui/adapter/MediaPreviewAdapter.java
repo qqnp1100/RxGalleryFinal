@@ -9,6 +9,7 @@ import java.util.List;
 
 import cn.finalteam.rxgalleryfinal.Configuration;
 import cn.finalteam.rxgalleryfinal.R;
+import cn.finalteam.rxgalleryfinal.RxGalleryFinal;
 import cn.finalteam.rxgalleryfinal.bean.MediaBean;
 import uk.co.senab.photoview.PhotoView;
 
@@ -55,7 +56,7 @@ public class MediaPreviewAdapter extends RecyclingPagerAdapter {
             path = mediaBean.getOriginalPath();
         }
         ivImage.setBackgroundColor(mPageColor);
-        mConfiguration.getImageLoader().displayImage(container.getContext(), path, ivImage, mDefaultImage, mConfiguration.getImageConfig(),
+        RxGalleryFinal.getImageLoader().displayImage(container.getContext(), path, ivImage, mDefaultImage, mConfiguration.getImageConfig(),
                 false, mConfiguration.isPlayGif(), mScreenWidth, mScreenHeight, mediaBean.getOrientation());
         return convertView;
     }

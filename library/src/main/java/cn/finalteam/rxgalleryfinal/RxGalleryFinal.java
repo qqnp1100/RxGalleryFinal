@@ -15,7 +15,7 @@ import com.yalantis.ucrop.model.AspectRatio;
 import java.util.List;
 
 import cn.finalteam.rxgalleryfinal.bean.MediaBean;
-import cn.finalteam.rxgalleryfinal.imageloader.ImageLoaderType;
+import cn.finalteam.rxgalleryfinal.imageloader.AbsImageLoader;
 import cn.finalteam.rxgalleryfinal.rxbus.RxBus;
 import cn.finalteam.rxgalleryfinal.rxbus.RxBusResultDisposable;
 import cn.finalteam.rxgalleryfinal.rxbus.event.BaseResultEvent;
@@ -36,6 +36,7 @@ public class RxGalleryFinal {
 
     private Configuration configuration = new Configuration();
     private RxBusResultDisposable<BaseResultEvent> isRadioDisposable;
+    private static AbsImageLoader imageLoader;
 
     private RxGalleryFinal() {
     }
@@ -44,6 +45,14 @@ public class RxGalleryFinal {
         RxGalleryFinal instance = new RxGalleryFinal();
         instance.configuration.setContext(context.getApplicationContext());
         return instance;
+    }
+
+    public static void setImageLoader(AbsImageLoader il) {
+        imageLoader = il;
+    }
+
+    public static AbsImageLoader getImageLoader() {
+        return imageLoader;
     }
 
     public RxGalleryFinal image() {
@@ -131,20 +140,6 @@ public class RxGalleryFinal {
         return this;
     }
 
-    public RxGalleryFinal imageLoader(@NonNull ImageLoaderType imageLoaderType) {
-        int type = 0;
-        if (imageLoaderType == ImageLoaderType.PICASSO) {
-            type = 1;
-        } else if (imageLoaderType == ImageLoaderType.GLIDE) {
-            type = 2;
-        } else if (imageLoaderType == ImageLoaderType.FRESCO) {
-            type = 3;
-        } else if (imageLoaderType == ImageLoaderType.UNIVERSAL) {
-            type = 4;
-        }
-        configuration.setImageLoaderType(type);
-        return this;
-    }
 
     /**
      * 隐藏相机
@@ -288,7 +283,7 @@ public class RxGalleryFinal {
             return;
         }
 
-        if (configuration.getImageLoader() == null) {
+        if (imageLoader == null) {
             throw new NullPointerException("imageLoader == null , please check imageLoader");
         }
         if (isRadioDisposable == null) {

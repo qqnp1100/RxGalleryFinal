@@ -1,4 +1,4 @@
-package cn.finalteam.rxgalleryfinal.imageloader;
+package cn.finalteam.rxgalleryfinal.sample.imageloader;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import cn.finalteam.rxgalleryfinal.imageloader.rotate.RotateTransformation;
+import cn.finalteam.rxgalleryfinal.imageloader.AbsImageLoader;
 import cn.finalteam.rxgalleryfinal.ui.widget.FixImageView;
 
 /**
@@ -44,7 +44,6 @@ public class GlideImageLoader implements AbsImageLoader {
                     .placeholder(defaultDrawable)
                     .error(defaultDrawable)
                     .override(width, height)
-                    .crossFade()
                     .transform(new RotateTransformation(context, rotate))
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(imageView);
@@ -52,7 +51,6 @@ public class GlideImageLoader implements AbsImageLoader {
             Glide
                     .with(context)
                     .load(path)
-                    .asBitmap()
                     .placeholder(defaultDrawable)
                     .error(defaultDrawable)
                     .override(width, height)

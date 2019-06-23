@@ -15,15 +15,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.io.File;
 import java.util.List;
 
 import cn.finalteam.rxgalleryfinal.Configuration;
 import cn.finalteam.rxgalleryfinal.R;
+import cn.finalteam.rxgalleryfinal.RxGalleryFinal;
 import cn.finalteam.rxgalleryfinal.bean.MediaBean;
-import cn.finalteam.rxgalleryfinal.imageloader.FrescoImageLoader;
 import cn.finalteam.rxgalleryfinal.rxbus.RxBus;
 import cn.finalteam.rxgalleryfinal.rxbus.event.MediaCheckChangeEvent;
 import cn.finalteam.rxgalleryfinal.rxjob.Job;
@@ -131,16 +130,10 @@ public class MediaGridAdapter extends RecyclerView.Adapter<MediaGridAdapter.Grid
                 }
             }
             Logger.w("提示path：" + path);
-            if (imageLoaderType != 3) {
-                OsCompat.setBackgroundDrawableCompat(holder.mIvMediaImage, mImageViewBg);
-                mConfiguration.getImageLoader()
-                        .displayImage(mMediaActivity, path, (FixImageView) holder.mIvMediaImage, mDefaultImage, mConfiguration.getImageConfig(),
-                                true, mConfiguration.isPlayGif(), mImageSize, mImageSize, mediaBean.getOrientation());
-            } else {
-                OsCompat.setBackgroundDrawableCompat(holder.mIvMediaImage, mImageViewBg);
-                FrescoImageLoader.setImageSmall("file://" + path, (SimpleDraweeView) holder.mIvMediaImage,
-                        mImageSize, mImageSize, holder.relativeLayout, mConfiguration.isPlayGif());
-            }
+            OsCompat.setBackgroundDrawableCompat(holder.mIvMediaImage, mImageViewBg);
+            RxGalleryFinal.getImageLoader()
+                    .displayImage(mMediaActivity, path, (FixImageView) holder.mIvMediaImage, mDefaultImage, mConfiguration.getImageConfig(),
+                            true, mConfiguration.isPlayGif(), mImageSize, mImageSize, mediaBean.getOrientation());
         }
     }
 
